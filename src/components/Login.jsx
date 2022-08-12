@@ -1,5 +1,8 @@
 import React, {useState} from "react";
 import { Form, InputText, Button } from "./sytle-components/LoginStyled";
+import 'react-notifications/lib/notifications.css';
+import {NotificationManager} from 'react-notifications';
+
 
 const Login = ({setIsLoggedIn})=> {
     const [user, setUser] = useState ('');
@@ -14,8 +17,12 @@ const Login = ({setIsLoggedIn})=> {
     }
 
     const loginControl = () => {
-        user === 'admin' && pass === 'admin' ? setIsLoggedIn(true) : alert("Username or Password is incorrect ")       
+        user === 'admin' && pass === 'admin' ? setIsLoggedIn(true) : createNotification()    
     } 
+
+    const createNotification = () => {
+        NotificationManager.warning('Username or Password is incorrect', ' ', 5000);
+    }
 
     return(
         <Form>
